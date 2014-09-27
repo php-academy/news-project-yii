@@ -10,10 +10,18 @@ class NewsController extends Controller{
 
     public function actionIndex() {
 
-        $newsItems = NewsItem::model()->findAll();
+        $criteria = new CDbCriteria;
+        $criteria->order = 'publish_date DESC';
+
+        $pages=new CPagination(NewsItem::model()->count($criteria));
+        $pages->pageSize = 2;
+        $pages->applyLimit($criteria);
+
+        $newsItems = NewsItem::model()->findAll($criteria);
 
         $this->render('index', array(
-            'items' => $newsItems
+            'items' => $newsItems,
+            'pages' => $pages,
         ));
     }
 
