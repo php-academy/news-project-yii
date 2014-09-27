@@ -4,6 +4,14 @@
  * User: nasedkin
  * Date: 27.09.14
  * Time: 8:09
+ *
+ * @var array $items
+ * @var NewsItem $item
  */
-?>
-Здесь будут новости
+
+foreach( $items as $item ) { ?>
+    <p><i><?=$item->publish_date?></i> <b><?=$item->title?></b></p>
+    <p>
+        <?=$item->text?>
+    </p>
+<? }

@@ -9,6 +9,11 @@
 class NewsController extends Controller{
 
     public function actionIndex() {
-        $this->render('index');
+
+        $newsItems = NewsItem::model()->findAll();
+
+        $this->render('index', array(
+            'items' => $newsItems
+        ));
     }
 } 
