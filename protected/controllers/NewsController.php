@@ -9,6 +9,6 @@
 class NewsController extends Controller{
 
     public function actionIndex() {
-        echo "News controller";
+        $this->render('index');
     }
 } 
