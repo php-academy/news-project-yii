@@ -16,4 +16,17 @@ class NewsController extends Controller{
             'items' => $newsItems
         ));
     }
+
+    public function actionView( $newsId ) {
+
+        if( $item = NewsItem::model()->findByPk($newsId) ) {
+
+            $this->render('view', array(
+                'item' => $item,
+            ));
+
+        } else {
+            throw new CHttpException(404, 'Запрашиваема новость не найдена');
+        }
+    }
 } 
