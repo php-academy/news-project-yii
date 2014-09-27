@@ -18,4 +18,7 @@ foreach( $items as $item ) {
 $this->widget('CLinkPager',array(
     'pages' => $pages,
     'maxButtonCount' => 5,
+    'header' => 'страница: ',
+    'prevPageLabel' => '&larr;',
+    'nextPageLabel' => '&rarr;',
 ));
