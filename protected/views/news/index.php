@@ -10,8 +10,10 @@
  */
 
 foreach( $items as $item ) { ?>
-    <p><i><?=$item->publish_date?></i> <b><?=$item->title?></b></p>
+    <p><i><?=$item->formatDate()?></i> <b><?=$item->title?></b></p>
     <p>
-        <?=$item->text?>
+        <?=$item->shortText()?>
     </p>
+    <p><a href="/news/item/<?=$item->newsId?>">подробнее</a></p>
+    <hr>
 <? }

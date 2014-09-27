@@ -11,6 +11,9 @@
  */
 class NewsItem extends CActiveRecord
 {
+    const DEFAULT_CUT_LENGTH = 100;
+    const DEFAULT_DATE_FORMAT = 'd.m.Y H:i:s';
+
     /**
      * @return string the associated database table name
      */
@@ -95,5 +98,29 @@ class NewsItem extends CActiveRecord
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
+    }
+
+    /**
+     * @param int $cut_length
+     * @return string
+     */
+    public function shortText( $cut_length = self::DEFAULT_CUT_LENGTH) {
+        $arText = explode('.', $this->text, 3);
+        $str = $arText[0];
+        if(isset($arText[1])) {
+            $str .= '. ' . $arText[1] . '.';
+        }
+
+        if( mb_strlen($str, 'UTF-8') < $cut_length ){
+            return $str;
+        } else {
+            return mb_substr($str, 0, $cut_length,'UTF-8') . ' ...';
+        }
+    }
+
+    public function formatDate( $format = self::DEFAULT_DATE_FORMAT){
+        $timestamp = strtotime($this->publish_date);
+        $formattedDate = date($format, $timestamp);
+        return $formattedDate;
     }
 }
