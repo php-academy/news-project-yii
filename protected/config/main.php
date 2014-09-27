@@ -43,6 +43,7 @@ return array(
             'urlFormat'=>'path',
             'showScriptName'=>false,
             'rules'=>array(
+                '/' => 'news/index',
                 '/news/item/<newsId:\d+>'=>'news/view',
                 //'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                 //'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',

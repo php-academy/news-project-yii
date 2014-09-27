@@ -20,7 +20,6 @@ class NewsController extends Controller{
     public function actionView( $newsId ) {
 
         if( $item = NewsItem::model()->findByPk($newsId) ) {
-
             $this->render('view', array(
                 'item' => $item,
             ));
