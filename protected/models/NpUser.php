@@ -92,6 +92,10 @@ class NpUser extends CActiveRecord
             'criteria'=>$criteria,
         ));
     }
+    
+    public function getUserById(){
+        
+    }
 
     /**
      * Returns the static model of the specified AR class.
