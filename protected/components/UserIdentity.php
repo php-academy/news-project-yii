@@ -22,9 +22,9 @@ class UserIdentity extends CUserIdentity
                 //$this->password;
             
                 if($user = NpUser::model()->findByAttributes(array('login' => $this->username)) ) {
-                    if( $this->password == md5($user->salt . $this->password)) {
+                    if( $this->password == md5($user->salt . $user->password)) {
                         $this->errorCode = self::ERROR_NONE;
-                        $this->userId = $user->getId();
+                        $this->userId = $user->userId;
                         return true;
                     } else {
                     $this->errorCode = self::ERROR_PASSWORD_INVALID;
