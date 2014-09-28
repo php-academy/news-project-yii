@@ -1,4 +1,17 @@
-<?php /* @var $this Controller */ ?>
+<?php
+/*
+ * 
+ * @var $this Controller 
+ * @var $app CWebApplication
+ * @var $request CHttpRequest
+ * @var $user CWebUser
+ * 
+ */ 
+$app = Yii::app();
+$request = Yii::app()->request;
+$user = Yii::app()->user;
+        
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +42,11 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Новости', 'url'=>array('/news/index/')),
+				//array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+				//array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>'Вход', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Выход ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->
@@ -48,8 +61,8 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
+		 <?php echo date('Y'); ?> Курс PHP онлайн<br/>
+		Все права защищены<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
 

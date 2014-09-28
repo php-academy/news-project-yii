@@ -26,7 +26,7 @@ class LoginForm extends CFormModel
 			// rememberMe needs to be a boolean
 			array('rememberMe', 'boolean'),
 			// password needs to be authenticated
-			array('password', 'authenticate'),
+			array('password', 'authenticate'),  //кастомный валидатор - в this классе определён
 		);
 	}
 
@@ -68,6 +68,11 @@ class LoginForm extends CFormModel
 		if($this->_identity->errorCode===UserIdentity::ERROR_NONE)
 		{
 			$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
+                        
+                        /**
+                         * $var CWebUser $webUser
+                         */
+                        //$webUser = Yii::app()->user;
 			Yii::app()->user->login($this->_identity,$duration);
 			return true;
 		}

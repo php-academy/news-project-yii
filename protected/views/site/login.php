@@ -14,11 +14,11 @@ $this->breadcrumbs=array(
 <p>Please fill out the following form with your login credentials:</p>
 
 <div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('CActiveForm', array(  //активные формы валидируются Ajaxом
 	'id'=>'login-form',
-	'enableClientValidation'=>true,
+	'enableClientValidation'=>true,  // Ajaxом!
 	'clientOptions'=>array(
-		'validateOnSubmit'=>true,
+		'validateOnSubmit'=>true, //сабмитом
 	),
 )); ?>
 
