@@ -19,6 +19,6 @@ $this->widget('CLinkPager', array(
     'maxButtonCount' => 5,
     'header' => 'страница',
     'prevPageLabel' => '&larr',
-    'nextPageLabel' => '&DoubleRightArrow'
+    'nextPageLabel' => '&rarr'
 ));
         

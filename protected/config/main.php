@@ -41,11 +41,11 @@ return array(
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
-			'urlFormat'=>'path',       //показывает пути в url
-                        'showScriptName' => false, // игнорировать index.php
+			'urlFormat'=>'path',       //РїРѕРєР°Р·С‹РІР°РµС‚ РїСѓС‚Рё РІ url
+                        'showScriptName' => false, // РёРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ index.php
 			'rules'=>array(
-                            '/news/item/<newsId:\d+>' => 'news/view',   //шаблон для news подобие htaccess d+ число
-                            '/' => 'news/index', //по news/index как корень
+                            '/news/item/<newsId:\d+>' => 'news/view',   //С€Р°Р±Р»РѕРЅ РґР»СЏ news РїРѕРґРѕР±РёРµ htaccess d+ С‡РёСЃР»Рѕ
+                            '/' => 'news/index', //РїРѕ news/index РєР°Рє РєРѕСЂРµРЅСЊ
 				/*'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
