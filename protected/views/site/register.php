@@ -3,7 +3,11 @@
 /* @var $model RegisterForm */
 /* @var $form CActiveForm */
 /* @var $user User */
+$this->breadcrumbs=array(
+    'Зарегистрироваться',
+);
 ?>
+<h1>Зарегистрироваться</h1>
 
 <div class="form">
 

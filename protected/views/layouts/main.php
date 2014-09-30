@@ -41,6 +41,7 @@ $request = Yii::app()->request;
 				//array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				//array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Войти', 'url'=>array('/site/login'), 'visible'=>$app->user->isGuest),
+                array('label'=>'Зарегистрироваться', 'url'=>array('/site/register'), 'visible'=>$app->user->isGuest),
 				array('label'=>'Выйти ('.$app->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!$app->user->isGuest)
 			),
 		)); ?>
