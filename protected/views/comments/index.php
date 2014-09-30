@@ -2,16 +2,13 @@
 /* @var $this CommentController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Комментарии',
-);
+foreach ($commItems as $comm) {
+    ?>
+<p><i><?=$comm->createTime?></i></p>
+<b><?=$comm->userId?></b>
+<p><?=$comm->text?></p>
 
 
-?>
+<?php
+}
 
-<h1>Комментарии</h1>
-
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>

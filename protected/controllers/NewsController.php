@@ -11,18 +11,35 @@ class NewsController extends Controller {
         $pages->applyLimit($criteria);
         
         $newsItems = NpNewsItem::model()->findAll($criteria);
+        
         $this->render('index', array(
             'newsItems' => $newsItems,
             'pages' => $pages,
+            
+            
         ));
        
     }
     
-    public function actionView($newsId) {   //принимаем айдишник
-       $item = NpNewsItem::model()->findByPk($newsId);
-       if($item) {
+    public function actionView($newsId) {   
+        $cs = Yii::app()->clientScript;
+        $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/funcs.js');
+        
+        $item = NpNewsItem::model()->findByPk($newsId);
+        
+        $commItems = NpComments::model()->findByAttributes(array('newsId'=>$newsId));
+        var_dump($commItems);
+       if($item && $commItems) {echo 888;
            $this->render('view', array(
-               'newsItem' => $item 
+               'newsItem' => $item,
+               'commItems' => $commItems,
+           ));
+       }
+       
+       elseif($item ) { 
+           $this->render('view', array(
+               'newsItem' => $item,
+               
            ));
        }
         else {
@@ -30,5 +47,12 @@ class NewsController extends Controller {
            //выбрасываем исключение опред класса
        }
     }
+    
+    public function actionComm(){
+        //$userId = NpUser::model()->findByPk($user);
+        echo 555;
+        
+    }
+    
 }
 

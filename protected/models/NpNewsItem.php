@@ -27,12 +27,12 @@ class NpNewsItem extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('publish_date', 'length', 'max'=>30),
-            array('title', 'length', 'max'=>50),
+            array('publishDate', 'length', 'max'=>30),
+            array('title', 'length', 'max'=>300),
             array('text', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('itemId, publish_date, title, text', 'safe', 'on'=>'search'),
+            array('itemId, publishDate, title, text', 'safe', 'on'=>'search'),
         );
     }
 
@@ -54,7 +54,7 @@ class NpNewsItem extends CActiveRecord
     {
         return array(
             'itemId' => 'Item',
-            'publish_date' => 'Publish Date',
+            'publishDate' => 'Publish Date',
             'title' => 'Title',
             'text' => 'Text',
         );
@@ -79,7 +79,7 @@ class NpNewsItem extends CActiveRecord
         $criteria=new CDbCriteria;
 
         $criteria->compare('itemId',$this->itemId);
-        $criteria->compare('publish_date',$this->publish_date,true);
+        $criteria->compare('publish_date',$this->publishDate,true);
         $criteria->compare('title',$this->title,true);
         $criteria->compare('text',$this->text,true);
 

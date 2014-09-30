@@ -107,4 +107,8 @@ class NpUser extends CActiveRecord
     {
         return parent::model($className);
     }
+    
+    public function profile($userId){
+        NpUserProfile::model()->findByAttributes(array('userId' => $userId));
+    }
 } 

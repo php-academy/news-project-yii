@@ -8,6 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Новостной портал',
+        'language' => 'ru',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -32,7 +33,9 @@ return array(
 
 	// application components
 	'components'=>array(
-
+                   /**
+                    * CWebUser
+                    */
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -41,19 +44,23 @@ return array(
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
-			'urlFormat'=>'path',       //РїРѕРєР°Р·С‹РІР°РµС‚ РїСѓС‚Рё РІ url
-                        'showScriptName' => false, // РёРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ index.php
+			'urlFormat'=>'path',       
+                        'showScriptName' => false, 
 			'rules'=>array(
-                            '/news/item/<newsId:\d+>' => 'news/view',   //С€Р°Р±Р»РѕРЅ РґР»СЏ news РїРѕРґРѕР±РёРµ htaccess d+ С‡РёСЃР»Рѕ
-                            '/' => 'news/index', //РїРѕ news/index РєР°Рє РєРѕСЂРµРЅСЊ
+                            '/news/item/<newsId:\d+>' => '/news/view',   
+                            '/' => 'news/index', 
+                            '/news/comm/<userId:\d+>' => '/news/comm',
+                            'site/register' => 'register'
+                           
+                           
 				/*'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-                             */
+                            */
                        
                          
 			),
-		),
+		), 
 		
 
 		// database settings are configured in database.php

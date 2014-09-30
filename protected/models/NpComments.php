@@ -10,7 +10,9 @@
  * @property string $createTime
  */
 class NpComments extends CActiveRecord
-{
+{       
+    
+         const DEFAULT_DATE_FORMAT = 'H:i:s d.m.Y';
 	/**
 	 * @return string the associated database table name
 	 */
@@ -27,8 +29,8 @@ class NpComments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userId, text, createTime', 'required'),
-			array('userId', 'numerical', 'integerOnly'=>true),
+			array('userId, text, createTime, newsId', 'required'),
+			array('userId, newsId', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('commId, userId, text, createTime', 'safe', 'on'=>'search'),
@@ -78,6 +80,7 @@ class NpComments extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('commId',$this->commId);
+                $criteria->compare('newsId',$this->newsId);
 		$criteria->compare('userId',$this->userId);
 		$criteria->compare('text',$this->text,true);
 		$criteria->compare('createTime',$this->createTime,true);
@@ -97,4 +100,10 @@ class NpComments extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+         public function formatPublishDate( $format = self::DEFAULT_DATE_FORMAT){
+        $timestamp = time();
+        $formatedDate = date($format, $timestamp);
+        return $formatedDate;
+    }
 }
