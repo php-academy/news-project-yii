@@ -46,31 +46,32 @@ class SiteController extends Controller
 		}
 	}
 
-	/**
-	 * Displays the contact page
-	 */
-	public function actionContact()
-	{
-		$model=new ContactForm;
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
-			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-Type: text/plain; charset=UTF-8";
+    public function actionRegister()
+    {
+        $model = new RegisterForm();
+        if( isset($_POST['RegisterForm']) ){
+            $model->attributes = $_POST['RegisterForm'];
+            if( $model->validate() ){
+                //пытаемся сохранить данные
+                $user = new User();
+                $user->login = $model->login;
+                $user->salt = md5(time());
+                $user->password = md5($user->salt . $model->password);
 
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-				$this->refresh();
-			}
-		}
-		$this->render('contact',array('model'=>$model));
-	}
+                if( $user->save() ) {
+                    $userProfile = new UserProfile();
+                    $userProfile->userId = $user->userId;
+                    $userProfile->name = $model->name;
+                    $userProfile->age = $model->age;
+
+                    if( $userProfile->save() ){
+                        $model = new RegisterForm();
+                    }
+                }
+            }
+        }
+        $this->render('register', array('model' => $model, 'user' => isset($user) ? $user : false  ));
+    }
 
 	/**
 	 * Displays the login page
