@@ -89,6 +89,18 @@ class NpCommentNews extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        //Для того, чтобы записывать время создания комментария, переопределим метод beforeSave() класса NpCommentNews 
+        protected function beforeSave()
+{
+        if(parent::beforeSave())
+        {
+            if($this->isNewRecord)
+                $this->create_date=date('Y-m-d H:i:s');
+            return true;
+        }
+        else
+            return false;
+}
 
 	/**
 	 * Returns the static model of the specified AR class.

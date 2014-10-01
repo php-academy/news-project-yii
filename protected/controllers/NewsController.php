@@ -33,11 +33,3 @@ class NewsController extends Controller{
         }           
     }
 }
-class CommentController extends NewsController
-{
-	public function actionIndex()
-	{
-		$this->render('index');
-                
-	}
-}
