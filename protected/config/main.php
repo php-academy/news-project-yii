@@ -8,6 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Новостной портал',
+        'language'=>'ru',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -42,7 +43,8 @@ return array(
 			'urlFormat'=>'path',
                         'showScriptName'=>false,                    
 			'rules'=>array(
-                                '/news/item/<newsId:\d+>' => 'news/view',
+                                '/login' => 'site/login',
+                                
                                 '/' => 'news/index',
 				/*'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',

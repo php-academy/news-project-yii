@@ -1,23 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "users".
+ * This is the model class for table "comments".
  *
- * The followings are the available columns in table 'np_user':
+ * The followings are the available columns in table 'comments':
  * @property integer $userId
- * @property string $login
- * @property string $password
- * @property string $salt
- * @property string $role
+ * @property integer $newsId
+ * @property string $publishDate
+ * @property string $text
  */
-class NpUser extends CActiveRecord
+class comment extends CActiveRecord
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return 'users';
+        return 'comments';
     }
 
     /**
@@ -28,13 +27,13 @@ class NpUser extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('login, password, salt', 'required'),
-            array('login', 'length', 'max'=>100),
-            array('password, salt', 'length', 'max'=>32),
-            array('role', 'length', 'max'=>30),
+            array('userId, newsId, publishDate', 'required'),
+            array('userId, newsId', 'numerical', 'integerOnly'=>true),
+            array('publishDate', 'length', 'max'=>30),
+            array('text', 'length', 'max'=>300),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('userId, login, password, salt, role', 'safe', 'on'=>'search'),
+            array('userId, newsId, publishDate, text', 'safe', 'on'=>'search'),
         );
     }
 
@@ -56,10 +55,9 @@ class NpUser extends CActiveRecord
     {
         return array(
             'userId' => 'User',
-            'login' => 'Login',
-            'password' => 'Password',
-            'salt' => 'Salt',
-            'role' => 'Role',
+            'newsId' => 'News',
+            'publishDate' => 'Publish Date',
+            'text' => 'Text',
         );
     }
 
@@ -82,10 +80,9 @@ class NpUser extends CActiveRecord
         $criteria=new CDbCriteria;
 
         $criteria->compare('userId',$this->userId);
-        $criteria->compare('login',$this->login,true);
-        $criteria->compare('password',$this->password,true);
-        $criteria->compare('salt',$this->salt,true);
-        $criteria->compare('role',$this->role,true);
+        $criteria->compare('newsId',$this->newsId);
+        $criteria->compare('publishDate',$this->publishDate,true);
+        $criteria->compare('text',$this->text,true);
 
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
@@ -96,7 +93,7 @@ class NpUser extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return NpUser the static model class
+     * @return comment the static model class
      */
     public static function model($className=__CLASS__)
     {
