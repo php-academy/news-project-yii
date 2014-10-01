@@ -4,7 +4,8 @@ class Np_commentController extends Controller
 {
 	public function actionIndex()
 	{
-		$this->render('index');
+		//$this->render('index');
+                echo 'ok';
 	}
 
 	// Uncomment the following methods and override them if needed

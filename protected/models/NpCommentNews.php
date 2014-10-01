@@ -10,7 +10,7 @@
  * @property string $comment
  * @property string $publishDate
  */
-class NpCommentNew extends CActiveRecord
+class NpCommentNews extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
