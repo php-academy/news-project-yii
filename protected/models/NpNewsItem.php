@@ -19,7 +19,7 @@ class NpNewsItem extends CActiveRecord
      */
     public function tableName()
     {
-        return 'np_news_item';
+        return 'news';
     }
 
     /**
