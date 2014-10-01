@@ -8,7 +8,7 @@ class NewsController extends Controller{
         $criteria->order = "publishDate desc";
         
         $pages = new CPagination( NpNewsItem::model()->count($criteria) );
-        $pages->pageSize = 2;
+        $pages->pageSize = 6;
         $pages->applyLimit($criteria);
                 
         $newsItems = NpNewsItem::model()->findAll($criteria);

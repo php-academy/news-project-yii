@@ -3,9 +3,9 @@
  * @var NpNewsItem $newsItem
  */
 ?>
-<h1><?=$newsItem->title?></h1>
+<h1><?=$item->title?></h1>
 <p>
-    <?=$newsItem->text?>
+    <?=$item->text?>
 </p>
-<p><?=$newsItem->formatPublishDate() ?></p>
-<p><a href="/">все новости</a></p>
+<p><?=$item->formatDate() ?></p>
+<p><a href="/news/">все новости</a></p>

@@ -3,14 +3,10 @@
  * @var array $newsItems
  * @var NpNewsItem $item
  */
-foreach ( $newsItems as $item ){
-    ?>
-    <p><i><?=$item->formatPublishDate() ?></i> <b><?=$item->title?></b></p>
-    <p><?=$item->shortText() ?></p>
-    <p><a href="/news/item/<?=$item->newsId;?>">подробнее</a></p>
-    <hr/>
-    <?php
+foreach( $items as $item ) {
+   $this->renderPartial('_newsItem', array('item' => $item));
 }
+
 
 $this->widget('CLinkPager',array(
     'pages' => $pages,
