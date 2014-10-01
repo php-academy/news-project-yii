@@ -47,7 +47,7 @@ return array(
 			'urlFormat'=>'path',       
                         'showScriptName' => false, 
 			'rules'=>array(
-                            '/news/item/<newsId:\d+>' => '/news/view',   
+                            '/news/view/<newsId:\d+>' => '/news/view',   
                             '/' => 'news/index', 
                             '/news/comm/<userId:\d+>' => '/news/comm',
                             'site/register' => 'register'

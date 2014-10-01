@@ -1,86 +1,77 @@
 <?php
 /**
  * @var NpNewsItem  $newsItem
- * @var NpComm $comm
- * @var NpUser $user, $userIn
+ * @var NpComments $commItems, $comm, $comment
+ * @var NpUser $user
  */
 ?>
+<p><a href="<?php echo Yii::app()->request->baseUrl; ?>">Все новости</a></p>
 <h1><?=$newsItem->title ?></h1>
 <p><?=$newsItem->text ?></p>
-<p><?=$newsItem->formatPublishDate()
-        ?></p>
+<p><?=$newsItem->publishDate ?></p>
 
-    <?php if (!Yii::app()->user->isGuest) {
-     
+<h3>Комментарии</h3>
     
-    if($commItems) 
-        {  
-    ?>
-
-        <h3>Комментарии</h3>
-    <?php
-
+<?php
+if($commItems) {
 
     foreach ($commItems as $comm) {
+  
     $user =  NpUser::model()->findByPk($comm->userId);
     ?>
-    <i><?=$comm->createTime?></i>
-    <b><?= $user->login ?></b>
+    <i><?=$comm->formatPublishDate()?></i>
+    <b>Добавил <?= $user->login ?></b>
     <p><?=$comm->text?></p>
-    
 
-    <?php
-         }
+        <?php }
+}
+else { ?> <p>Никто не комментировал</p>
 
-    }  
-    else { 
-        $userIn =  NpUser::model()->findByAttributes(array('login'=>Yii::app()->user->name));
-        $newComment = NpComments::model();
-        $newComment->userId = $userIn->userld;
-        $newComment->newsId = $newsItem->itemId;
-        
-        $link = CHtml::link('Оставить комментарий');
+
+ <?php
+}
+ 
+if(!Yii::app()->user->isGuest) { 
+     
+    $link = CHtml::link('Оставить комментарий');
             echo CHtml::tag('span', array(
                 'id' => "setCommLink",
                 'onclick'=>"showCommentForm()"
            
                 ),  $link . "\n");
   
-        ?>
-    <div id="commentForm" style="display: none">
-    <?php 
-    
-    $form = $this->beginWidget('CActiveForm', array(  
-	'action'=> Yii::app()->request->baseUrl."/comments/create?newsId=$newsItem->itemId"
-        )); 
-   
-
     ?>
+    <div id="commentForm" class="form" style="display: none">
+   <?php $form=$this->beginWidget('CActiveForm', array(  //активные формы валидируются Ajaxом
+	'id'=>'login-form',
+	'enableClientValidation'=>true,  
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true, 
+	),
+)); ?>
 
 	<div class="row">
             <span>Комментировать:</span>
 		
-		<?php echo $form->textField($newComment, 'text', array('size'=>60, 'rows' => 3)); ?>
-		<?php echo $form->error($newComment, 'text'); ?>
-                <?php echo $form->hiddenField($newComment, 'userId'); ?>
-                <?php echo $form->hiddenField($newComment, 'newsId'); ?>
-            
-                
+		<?php echo $form->textField($model, 'text'); ?>
+		<?php echo $form->error($model, 'error'); ?>
+        
 	</div>
 
-	
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Добавить комментарий');
-               
-      ?>
+		<?php echo CHtml::submitButton('Добавить комментарий'); ?>
     
-    </div>
-</div>
- <?php $this->endWidget(); ?>
+        </div>
+    
+    
+<?php $this->endWidget();  ?>
 
-<?php
-    }
-}       
- ?>
-<p><a href="<?php echo Yii::app()->request->baseUrl; ?>">Все новости</a></p>
 
+ 
+        </div>
+<?php } ?>
+   
+    
+        
+      
+ 

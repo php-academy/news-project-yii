@@ -9,22 +9,19 @@ class CommentsController extends Controller
 		$model = new NpComments();
                 echo $newsId = $_GET['newsId'];
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+		
 		if(isset($_POST['NpComments']))
 		{
 			
                         $model->text = $_POST['NpComments']['text'];
                         $model->createTime = $model->formatPublishDate();
-                        $model->userId = $_POST['NpComments']['userId'];
-                        $model->newsId = $_POST['NpComments']['newsId'];
+                        $model->userId = Yii::app()->user->id;
+                        $model->newsId = $newsId;
                         
-			if($model->save())
-				
-                        $this->redirect(array('news/view'));
-                        
-                        
+			if($model->save()) {
+                            $this->redirect(Yii::app()->request->baseUrl."news/view/$newsId");
+                        }
+                     
 		}
 
 	}
