@@ -21,12 +21,23 @@ class NewsController extends Controller{
     
     public function actionView( $newsId ){
         $item = NpNewsItem::model()->findByPk($newsId);
+        $accomment = new CDbCriteria();
+        $comment = NpCommentNews::model()->findAll($accomment);
         if( $item ) {
             $this->render('view', array( 
-                'newsItem' => $item
+                'newsItem' => $item,
+                'comment'=> $comment,
             ));
         } else {
             throw new CHttpException(404, 'Запрашиваемая вами новость не найдена');
         }           
     }
+}
+class CommentController extends NewsController
+{
+	public function actionIndex()
+	{
+		$this->render('index');
+                
+	}
 }

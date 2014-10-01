@@ -9,3 +9,7 @@
 </p>
 <p><?=$newsItem->formatPublishDate() ?></p>
 <p><a href="/">все новости</a></p>
+
+<div id="comments">
+<p><b>Комментарии:</b></p>
+ 
