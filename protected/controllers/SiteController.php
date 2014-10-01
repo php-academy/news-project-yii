@@ -126,6 +126,16 @@ class SiteController extends Controller
                     $userProfile->name = $model->name;
                     $userProfile->age = $model->age;
 
+                    if( $avatar = CUploadedFile::getInstance($model,'avatar') ) {
+                        $avatarServerName = md5( $user->userId. time() . $avatar->getName() ) . '.' . $avatar->getExtensionName();
+                        $avatarServerPath = Yii::app()->basePath . '/../avatars/' . $avatarServerName;
+                        $avatarWebPath    = '/avatars/' . $avatarServerName;
+                        if( $avatar->saveAs($avatarServerPath) )
+                        {
+                            $userProfile->avatar = $avatarWebPath;
+                        }
+                    }
+                    
                     if( $userProfile->save() ){
                         $model = new RegisterForm();
                     }

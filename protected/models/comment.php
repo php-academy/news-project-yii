@@ -9,8 +9,12 @@
  * @property string $publishDate
  * @property string $text
  */
-class comment extends CActiveRecord
-{
+class comment extends CActiveRecord {   
+    
+    public $commentId;
+    public $publishDate;
+    public $commentText;
+    
     /**
      * @return string the associated database table name
      */
@@ -27,9 +31,6 @@ class comment extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('userId, newsId, publishDate', 'required'),
-            array('userId, newsId', 'numerical', 'integerOnly'=>true),
-            array('publishDate', 'length', 'max'=>30),
             array('text', 'length', 'max'=>300),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.

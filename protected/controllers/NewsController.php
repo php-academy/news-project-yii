@@ -14,7 +14,7 @@ class NewsController extends Controller{
         $newsItems = NpNewsItem::model()->findAll($criteria);
         
         $this->render('index', array(
-            'newsItems' => $newsItems,
+            'newsItems' => $items,
             'pages' => $pages, 
         ));
     }
@@ -29,4 +29,5 @@ class NewsController extends Controller{
             throw new CHttpException(404, 'Запрашиваемая вами новость не найдена');
         }           
     }
+    
 }

@@ -59,7 +59,7 @@ $user = Yii::app()->user;
 	<div class="clear"></div>
 
 	<div id="footer">
-		&copy; <?php echo date('Y'); ?> курс php online.<br/>
+		&copy; <?php echo date('Y'); ?> курс PHP online.<br/>
 		Все права защищены.<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
